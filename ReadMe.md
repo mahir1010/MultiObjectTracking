@@ -35,11 +35,11 @@ Additionally, for the cell dataset, we generated a mask to keep only the petri d
 
 ## Discussion
 
-**Strengths:**
-*  In the cell dataset, our detection is very accurate. Tracking is also robust given cells do not jump around a lot
-
-**Limitations:**
-*   The data association algorithm is not very robust. Most of the time we opt for creating a new track.
+1. If the motion is continuous and not spurious, our algorithm manages to generate long and stable tracks. Whereas, if the distance between Kalman prediction and measurement is more than certain threshold, we delete our old track and start a new one. Our tracker manages to handle new tracks and out of view tracks.
+2. We have selected a specific threshold for both dataset. If the distance between Kalman prediction and measurement is higher than the threshold, we delete old track and create a new one.
+3. Our filter uses constant velocity model, therefore if the object doesn't change direction rapidly after occlusion, our algorithm will work well. In that, it works well in the bat dataset but the cell dataset is very random.
+4. We delete old track and create a new one.
+5. We need the velocity model to better predict the frames. In fact we can also change this to constant acceleration model to have even more accurate results.
 
 * * *
 
