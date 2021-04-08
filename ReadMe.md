@@ -28,8 +28,8 @@ Additionally, for the cell dataset, we generated a mask to keep only the petri d
 
 ## Results
 
-![](images/bats.gif)
-![](images/cells.gif)
+![](https://github.com/mahir1010/MultiObjectTracking/blob/master/bats.gif?raw=true)
+![](https://github.com/mahir1010/MultiObjectTracking/blob/master/cells.gif?raw=true)
 
 * * *
 
