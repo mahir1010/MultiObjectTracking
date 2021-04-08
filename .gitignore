@@ -1,0 +1,6 @@
+**/*.npy
+**/*.tif
+**/*.ppm
+**/*.txt
+__pycache__
+.idea
