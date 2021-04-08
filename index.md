@@ -1,37 +1,52 @@
-## Welcome to GitHub Pages
+# Multi Object Tracking
 
-You can use the [editor on GitHub](https://github.com/mahir1010/MultiObjectTracking/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Mahir Patel  
+Navoneel Ghosh  
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+2021.4.8
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+* * *
 
-```markdown
-Syntax highlighted code block
+## Overall Description
 
-# Header 1
-## Header 2
-### Header 3
+We use computer vision techniques to localize and track multiple objects in a video
 
-- Bulleted
-- List
+* * *
 
-1. Numbered
-2. List
+## Method and Implementation
 
-**Bold** and _Italic_ and `Code` text
+Our process starts with background subtraction to perform motion segmentation. We perform median blur with kernel size 3 to remove isolated white pixels from the background. After that we perform gaussian blur and dilation of image further. After thresholding that image, we find contours in the image and only keeping the ones with high enough area. We maintain Kalman Filter for each object and use Hungarian algorithm for data association. The decision process is naive as we assume that if our Kalman prediction is far from measurement, i.e. after matching the score is higher than a specific threshold, we delete the old track and create a new one. The output can be improved by tuning Kalman filters and changing decision algorithm.
 
-[Link](url) and ![Image](src)
-```
+Additionally, for the cell dataset, we generated a mask to keep only the petri dish in the video.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+* * *
+## Data
+[Test videos stored as numpy arrays can be found at this link](https://drive.google.com/drive/folders/1PpnpIkjnl1Xbt9-xdW64R2s65CXN50lE?usp=sharing)
 
-### Jekyll Themes
+* * *
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mahir1010/MultiObjectTracking/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## Results
 
-### Support or Contact
+![](https://github.com/mahir1010/MultiObjectTracking/blob/master/bats.gif?raw=true)
+![](https://github.com/mahir1010/MultiObjectTracking/blob/master/cells.gif?raw=true)
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+* * *
+
+## Discussion
+
+**Strengths:**
+*  In the cell dataset, our detection is very accurate. Tracking is also robust given cells do not jump around a lot
+
+**Limitations:**
+*   The data association algorithm is not very robust. Most of the time we opt for creating a new track.
+
+* * *
+
+## Credits and Bibliography 
+[Kalman Filter](https://nbviewer.jupyter.org/github/rlabbe/Kalman-and-Bayesian-Filters-in-Python/blob/master/table_of_contents.ipynb)
+
+[Opencv-python](https://opencv-python-tutroals.readthedocs.io/en/latest/)
+
+* * *
+ 
